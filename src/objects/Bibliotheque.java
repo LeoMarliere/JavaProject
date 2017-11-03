@@ -8,9 +8,9 @@ public class Bibliotheque {
 	
 	private HashMap<Integer, Book> books = new HashMap<Integer,Book>();
 	
-	public Bibliotheque(HashMap<Integer, Book> books) {
+	public Bibliotheque( ) {
 		
-		this.books = books;
+		this.books = new HashMap<Integer, Book>();
 		
 		// Ensuite on crée nos listes d'auteurs
 		List<String> auteur1 = new ArrayList<>();
