@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import objects.AllBooksAlreadyReturnedException;
+import Exception.AllBooksAlreadyReturnedException;
+import Exception.BookNotFoundException;
+import Exception.UnavailableBookException;
 import objects.Book;
-import objects.BookNotFoundException;
-import objects.UnavailableBookException;
 import objects.User;
 
 public class BibliothequeGestion  implements IBibliotheque{
