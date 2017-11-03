@@ -2,11 +2,15 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import objects.AllBooksAlreadyReturnedException;
 import objects.Book;
+import objects.BookNotFoundException;
+import objects.UnavailableBookException;
 import objects.User;
 
-public class BibliothequeGestion {
+public class BibliothequeGestion  implements IBibliotheque{
 
 	public static List<Book> bookList;
 	public static List<User> userList;
@@ -107,5 +111,41 @@ public class BibliothequeGestion {
 		maListe.add(user5);
 
 		return maListe;
+	}
+
+	@Override
+	public Optional<Book> getBook(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Optional<String> addBook(String isbn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void borrowBook(String id, String username) throws BookNotFoundException, UnavailableBookException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void returnBook(String id, String username) throws BookNotFoundException, AllBooksAlreadyReturnedException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Book> getBooks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Book> searchBooks(String searchTerm) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
