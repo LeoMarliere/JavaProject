@@ -9,6 +9,8 @@ import Exception.UnavailableBookException;
 import objects.Book;
 
 public interface IBibliotheque {
+	
+	
 	/**
 	* Get a book from its id
 	*
@@ -16,6 +18,8 @@ public interface IBibliotheque {
 	* @return a book with the given id if there is one
 	*/
 	Optional<Book> getBook(String id);
+
+	
 	/**
 	* Add a book with the given ISBN
 	*
@@ -23,6 +27,8 @@ public interface IBibliotheque {
 	* @return the id of the added book if the isbn exists
 	*/
 	Optional<String> addBook(String isbn);
+	
+	
 	/**
 	* Borrow a book from the library
 	*
@@ -34,6 +40,9 @@ public interface IBibliotheque {
 	*/
 	void borrowBook(String id, String username) throws BookNotFoundException,
 	UnavailableBookException;
+	
+	
+	
 	/**
 	* Return a book back to the library
 	*
@@ -45,6 +54,9 @@ public interface IBibliotheque {
 	*/
 	void returnBook(String id, String username) throws BookNotFoundException,
 	AllBooksAlreadyReturnedException;
+	
+	
+	
 	/**
 	* Get all books of the library
 	*
@@ -52,6 +64,9 @@ public interface IBibliotheque {
 	* @return the books
 	*/
 	List<Book> getBooks();
+	
+	
+	
 	/**
 	* Return all books with an author, a title or an ISBN matching the search term
 	*
