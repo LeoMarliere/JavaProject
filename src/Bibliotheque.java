@@ -58,13 +58,10 @@ public class Bibliotheque implements IBibliotheque{
 		int j=0;
 		Iterator<User> it2=user.iterator();
 		while(it.hasNext()){
-			if(!book.contains(book.get(i))){
-				throw new LibraryException("le livre que vous chercher n'est pas dans notre bibliothèque");
-			}
 			if(book.get(i).getId()==Integer.parseInt(id)){
 				while(it2.hasNext()){
 					if(user.get(j).getUsername()==username && !user.get(j).getBook().contains(book.get(i))){
-						if(book.get(j).getNbExemplaire()<=0){
+						if(book.get(i).getNbExemplaire()<=0){
 							throw new LibraryException("Le livre "+book.get(j).getTitre()+" n'est plus disponible");
 						}
 						user.get(j).addBook(book.get(i));
@@ -76,6 +73,9 @@ public class Bibliotheque implements IBibliotheque{
 			}
 			i++;
 			it.next();
+		}
+		if(j==0){
+			throw new LibraryException("le livre que vous chercher n'est pas dans notre bibliothèque");
 		}
 	}
 
@@ -100,11 +100,13 @@ public class Bibliotheque implements IBibliotheque{
 			i++;
 			it.next();
 		}
+		if(j==0){
+			throw new LibraryException("le livre que vous voulez nous retourner n'est pas référencé dans notre bibliothèque");
+		}
 	}
 
 	@Override
 	public List<Book> getBooks() {
-		// TODO Auto-generated method stub		
 		return book;
 	}
 
