@@ -1,4 +1,3 @@
-
 public class Book {
 	private int id;
 	private String isbn;
@@ -6,13 +5,12 @@ public class Book {
 	private String titre;
 	private int nbExemplaire;
 
-	public Book(int id, String isbn, String auteur, String titre, int nbExemplaire) {
-		super();
-		this.id = id;
-		this.isbn = isbn;
-		this.auteur = auteur;
-		this.titre = titre;
-		this.nbExemplaire = nbExemplaire;
+	public Book(int id, String isbn, String auteur, String titre, int nbExemplaire){
+			this.id = id;
+			this.isbn = isbn;
+			this.auteur = auteur;
+			this.titre = titre;
+			this.nbExemplaire = nbExemplaire;
 	}
 
 	public int getId() {

@@ -1,9 +1,6 @@
 import java.util.List;
 import java.util.Optional;
-
-import Exception.AllBooksAlreadyReturnedException;
-import Exception.BookNotFoundException;
-import Exception.UnavailableBookException;
+import Exception.LibraryException;
 
 public interface IBibliotheque {
 	/**
@@ -29,8 +26,7 @@ public interface IBibliotheque {
 	* @throws UnavailableBookException if all books in the library with the given id
 	have been borrowed
 	*/
-	void borrowBook(String id, String username) throws BookNotFoundException,
-	UnavailableBookException;
+	void borrowBook(String id, String username) throws LibraryException;
 	/**
 	* Return a book back to the library
 	*
@@ -40,8 +36,7 @@ public interface IBibliotheque {
 	* @throws AllBooksAlreadyReturnedException if all books with the given id are
 	already returned
 	*/
-	void returnBook(String id, String username) throws BookNotFoundException,
-	AllBooksAlreadyReturnedException;
+	void returnBook(String id, String username) throws LibraryException;
 	/**
 	* Get all books of the library
 	*

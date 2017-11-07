@@ -3,9 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import Exception.AllBooksAlreadyReturnedException;
-import Exception.BookNotFoundException;
-import Exception.UnavailableBookException;
+import Exception.LibraryException;
 
 public class Bibliotheque implements IBibliotheque{
 	private List<User> user;
@@ -53,16 +51,22 @@ public class Bibliotheque implements IBibliotheque{
 	}
 
 	@Override
-	public void borrowBook(String id, String username) throws BookNotFoundException, UnavailableBookException {
+	public void borrowBook(String id, String username) throws LibraryException {
 		// TODO Auto-generated method stub
 		int i=0;
 		Iterator<Book> it=book.iterator();
 		int j=0;
 		Iterator<User> it2=user.iterator();
 		while(it.hasNext()){
+			if(!book.contains(book.get(i))){
+				throw new LibraryException("le livre que vous chercher n'est pas dans notre bibliothèque");
+			}
 			if(book.get(i).getId()==Integer.parseInt(id)){
 				while(it2.hasNext()){
-					if(user.get(j).getUsername()==username){
+					if(user.get(j).getUsername()==username && !user.get(j).getBook().contains(book.get(i))){
+						if(book.get(j).getNbExemplaire()<=0){
+							throw new LibraryException("Le livre "+book.get(j).getTitre()+" n'est plus disponible");
+						}
 						user.get(j).addBook(book.get(i));
 						book.get(i).setNbExemplaire(book.get(i).getNbExemplaire()-1);
 					}
@@ -76,7 +80,7 @@ public class Bibliotheque implements IBibliotheque{
 	}
 
 	@Override
-	public void returnBook(String id, String username) throws BookNotFoundException, AllBooksAlreadyReturnedException {
+	public void returnBook(String id, String username) throws LibraryException {
 		// TODO Auto-generated method stub
 		int i=0;
 		Iterator<Book> it=book.iterator();
