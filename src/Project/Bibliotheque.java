@@ -1,3 +1,4 @@
+package Project;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -31,7 +32,6 @@ public class Bibliotheque implements IBibliotheque{
 
 	@Override
 	public Optional<Book> getBook(String id) {
-		// TODO Auto-generated method stub
 		int i=0;
 		Iterator it=book.iterator();
 		while(it.hasNext()){
@@ -46,13 +46,20 @@ public class Bibliotheque implements IBibliotheque{
 
 	@Override
 	public Optional<String> addBook(String isbn) {
-		// TODO Auto-generated method stub
+		int i=0;
+		Iterator<Book> it=book.iterator();
+		while(it.hasNext()){
+			if(book.get(i).getIsbn()==isbn){
+				book.get(i).setNbExemplaire(book.get(i).getNbExemplaire()+1);
+			}
+			it.next();
+			i++;
+		}
 		return null;
 	}
 
 	@Override
 	public void borrowBook(String id, String username) throws LibraryException {
-		// TODO Auto-generated method stub
 		int i=0;
 		Iterator<Book> it=book.iterator();
 		int j=0;
@@ -81,7 +88,6 @@ public class Bibliotheque implements IBibliotheque{
 
 	@Override
 	public void returnBook(String id, String username) throws LibraryException {
-		// TODO Auto-generated method stub
 		int i=0;
 		Iterator<Book> it=book.iterator();
 		int j=0;
@@ -112,7 +118,6 @@ public class Bibliotheque implements IBibliotheque{
 
 	@Override
 	public List<Book> searchBooks(String searchTerm) {
-		// TODO Auto-generated method stub
 		List <Book> res= new ArrayList<>();
 		int i=0;
 		Iterator<Book> it=book.iterator();
