@@ -30,7 +30,6 @@ public class Bibliotheque implements IBibliotheque{
 	}
 
 
-	@Override
 	public Optional<Book> getBook(String id) {
 		int i=0;
 		Iterator it=book.iterator();
@@ -44,7 +43,6 @@ public class Bibliotheque implements IBibliotheque{
 		return null;
 	}
 
-	@Override
 	public Optional<String> addBook(String isbn) {
 		int i=0;
 		Iterator<Book> it=book.iterator();
@@ -58,7 +56,6 @@ public class Bibliotheque implements IBibliotheque{
 		return null;
 	}
 
-	@Override
 	public void borrowBook(String id, String username) throws LibraryException {
 		int i=0;
 		Iterator<Book> it=book.iterator();
@@ -86,7 +83,6 @@ public class Bibliotheque implements IBibliotheque{
 		}
 	}
 
-	@Override
 	public void returnBook(String id, String username) throws LibraryException {
 		int i=0;
 		Iterator<Book> it=book.iterator();
@@ -111,14 +107,12 @@ public class Bibliotheque implements IBibliotheque{
 		}
 	}
 
-	@Override
 	public List<Book> getBooks() {
 		return book;
 	}
 
-	@Override
 	public List<Book> searchBooks(String searchTerm) {
-		List <Book> res= new ArrayList<>();
+		List <Book> res= new ArrayList<Book>();
 		int i=0;
 		Iterator<Book> it=book.iterator();
 		while(it.hasNext()){

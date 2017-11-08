@@ -6,7 +6,7 @@ import java.util.List;
 public class User {
 	private int id;
 	private String username;
-	private List<Book> book= new ArrayList<>();
+	private List<Book> book= new ArrayList<Book>();
 
 
 	public User(int id, String username) {
