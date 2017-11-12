@@ -3,6 +3,7 @@ package Main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import Exception.LibraryException;
 import Project.Bibliotheque;
@@ -17,24 +18,22 @@ public class Main {
 
 	public static void main(String[] args) throws LibraryException {
 		
-//		On créé les livres
-		Book book1 = new Book(1, "AAA", "Auteur1", "Titre1", 2);
-		Book book2 = new Book(2, "AAB", "Auteur2", "Titre2", 2);
-		Book book3 = new Book(3, "AAC", "Auteur3", "Titre3", 2);
-		Book book4 = new Book(4, "AAD", "Auteur4", "Titre4", 2);
-		Book book5 = new Book(5, "AAE", "Auteur5", "Titre5", 2);
+//		On crée les livres
+		Book book1 = new Book(1, "AAA", "Victor Hugo", "Les Miserables", 2);
+		Book book2 = new Book(2, "AAB", "Voltaire", "Candide", 2);
+		Book book3 = new Book(3, "AAC", "Arthur Conan Doyle", "Le Chien des Baskerville", 2);
 		
-//		On les ajoute quelques livres a notre liste de livre
+//		On les ajoute quelques livres à notre liste de livres
 		List <Book>listBook=new ArrayList<Book>();		
 		listBook.add(book1);
 		listBook.add(book2);
 		listBook.add(book3);
 		
 
-//		On créé les utilisateurs
+//		On crée les utilisateurs
 		User user1= new User(1, "Capon");
-		User user2= new User(2, "Charclo");
-		User user3= new User(3, "Titou");
+		User user2= new User(2, "Exodia");
+		User user3= new User(3, "Titouan");
 
 //		On les ajoute à notre liste de d'utilisateur
 		List <User>listUser= new ArrayList<User>();
@@ -42,81 +41,132 @@ public class Main {
 		listUser.add(user2);
 		listUser.add(user3);
 		
-//		On créé notre bibliothèqque
+//		On crée notre bibliothèqque
 		bibi = new Bibliotheque(listUser, listBook);
 		
 //		On ajoute des exemplaires de livre
 		System.out.println("\n ---------------1-----------------\n");
-		System.out.println("Tous les livres : "+bibi.getBooks());
+		System.out.println("Etat des livres : "+bibi.getBooks());
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
 		System.out.println("Livre avec ID = 1 : "+bibi.getBook("1"));
 		System.out.println("Livre avec ID = 2 : "+bibi.getBook("2"));
 		System.out.println("Livre avec ID = 3 : "+bibi.getBook("3"));
-		
+		System.out.println("Livre avec ID = 4 : "+bibi.getBook("4"));
+		System.out.println();
 		System.out.println("ON AJOUTE DES EXEMPLAIRES");
 		bibi.addBook("AAA");
 		bibi.addBook("AAB");
 		bibi.addBook("AAB");
 		bibi.addBook("AAC");
+		bibi.addBook("AAR");
 	
 		
-//		On verifie l'etat de la bibliothèque
+//		On vérifie l'état de la bibliothèque
 		System.out.println("\n ---------------2-----------------\n");
-		System.out.println("Tous les livres : "+bibi.getBooks());
+		System.out.println("Etat des livres : "+bibi.getBooks());
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
 		System.out.println("Livre avec ID = 1 : "+bibi.getBook("1"));
 		System.out.println("Livre avec ID = 2 : "+bibi.getBook("2"));
 		System.out.println("Livre avec ID = 3 : "+bibi.getBook("3"));
 		
 		System.out.println("\n ---------------3-----------------\n");
-		
-//		Des utilisateurs empruntent des livres
+
+		//		Des utilisateurs empruntent des livres
 		System.out.println("DES UTILISATEUR EMPRUNTENT DES LIVRES");
+//		On vérifie si le livre demandé est bien présent dans la bibliothèque
+
 		try{
-		bibi.borrowBook("1", "Capon");
-		bibi.borrowBook("1", "Charclo");
-		bibi.borrowBook("2", "Titou");
-//		On verifie si le livre demandé est bien présent dans la bibliothèque
+			bibi.borrowBook("1", "Capon");
 		}catch( LibraryException e){
-			System.err.println(e);
+			System.out.println(e);
+		}try{
+			bibi.borrowBook("1", "Exodia");
+		}catch( LibraryException e){
+			System.out.println(e);
+		}try{
+			bibi.borrowBook("1", "Exodia");
+		}catch( LibraryException e){
+			System.out.println(e);
+		}try{
+			bibi.borrowBook("2", "Titouan");
+		}catch( LibraryException e){
+			System.out.println(e);
 		}
 		
-//		On verifie l'etant des livres
+		System.out.println();
+		//		On vérifie l'etat des livres
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
-		System.out.println("Tous les livres : "+bibi.getBooks());
+		System.out.println("Etat des livres : "+bibi.getBooks());
+		System.out.println();
 		
-//		On verifie l'etant des utilisateurs
+//		On vérifie l'etat des utilisateurs
 		System.out.println("ETAT DES UTILISATEURS");
 		System.out.println(user1.getUsername()+" a "+user1.getBook());
 		System.out.println(user2.getUsername()+" a "+user2.getBook());
 		System.out.println(user3.getUsername()+" a "+user3.getBook());
+		
+		System.out.println();
+		
+		System.out.println("ETAT DE LA BIBLIOTHEQUE");
+		System.out.println("Livre avec ID = 1 : "+bibi.getBook("1"));
+		System.out.println("Livre avec ID = 2 : "+bibi.getBook("2"));
+		System.out.println("Livre avec ID = 3 : "+bibi.getBook("3"));
 		
 		System.out.println("\n ---------------4-----------------\n");
 		
-//		Des utilisateur rendent des livres
-		System.out.println("LES UTILISATEUR NOUS REND DES LIVRES");
+//		Des utilisateurs rendent des livres
+		System.out.println("LES UTILISATEURS NOUS REND DES LIVRES");
+//		On vérifie si le livre rendu correspond bien
+
 		try{
 		bibi.returnBook("1", "Capon");
-		bibi.returnBook("2", "Titou");
-		bibi.returnBook("1", "Charclo");
-//		On verifie si le livre rendu correspond bien
 		}catch(LibraryException e){
-			System.err.println(e);
+			System.out.println(e);
+		}
+		try{
+		bibi.returnBook("1", "Exodia");
+		}catch(LibraryException e){
+			System.out.println(e);
+		}
+		try{
+		bibi.returnBook("2", "Titouan");
+		}catch(LibraryException e){
+			System.out.println(e);
+		}
+		try{
+		bibi.returnBook("2", "Titouan");
+		}catch(LibraryException e){
+			System.out.println(e);
+		}
+		try{
+			bibi.returnBook("42", "Titouan");
+		}catch(LibraryException e){
+			System.out.println(e);
 		}
 		
+		System.out.println();
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
-		System.out.println("Tous les livres : "+bibi.getBooks());
+		System.out.println("Etat des livres : "+bibi.getBooks());
 
+		System.out.println();
 		System.out.println("ETAT DES UTILISATEURS");
 		System.out.println(user1.getUsername()+" a "+user1.getBook());
 		System.out.println(user2.getUsername()+" a "+user2.getBook());
 		System.out.println(user3.getUsername()+" a "+user3.getBook());
 		
+		System.out.println();
+		
+		System.out.println("ETAT DE LA BIBLIOTHEQUE");
+		System.out.println("Livre avec ID = 1 : "+bibi.getBook("1"));
+		System.out.println("Livre avec ID = 2 : "+bibi.getBook("2"));
+		System.out.println("Livre avec ID = 3 : "+bibi.getBook("3"));
+		
 		System.out.println("\n ---------------5-----------------\n");		
 		System.out.println("ON RECHERCHE UN LIVRE");
-		System.out.println("Recherche 1 : "+bibi.searchBooks("Titre3"));
-		System.out.println("Recherche 2 : "+bibi.searchBooks("Auteur1"));
-
+		System.out.println("Recherche 1 : "+bibi.searchBooks("Le Chien des Baskerville"));
+		System.out.println("Recherche 2 : "+bibi.searchBooks("Victor Hugo"));
+		System.out.println("Recherche 3 : "+bibi.searchBooks("B2O"));
+		
 	}
 
 }
