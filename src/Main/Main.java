@@ -19,9 +19,9 @@ public class Main {
 	public static void main(String[] args) throws LibraryException {
 		
 //		On crée les livres
-		Book book1 = new Book(1, "AAA", "Victor Hugo", "Les Miserables", 2);
-		Book book2 = new Book(2, "AAB", "Voltaire", "Candide", 2);
-		Book book3 = new Book(3, "AAC", "Arthur Conan Doyle", "Le Chien des Baskerville", 2);
+		Book book1 = new Book("AAA", "Victor Hugo", "Les Miserables", 2);
+		Book book2 = new Book("AAB", "Voltaire", "Candide", 2);
+		Book book3 = new Book("AAC", "Arthur Conan Doyle", "Le Chien des Baskerville", 2);
 		
 //		On les ajoute quelques livres à notre liste de livres
 		List <Book>listBook=new ArrayList<Book>();		

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import Exception.LibraryException;
 
@@ -78,6 +79,8 @@ public class Bibliotheque implements IBibliotheque {
 			i++;
 		}
 		if(!flag){
+			//Book newBook = new Book(isbn, RandomStringUtils.randomAlphanumeric(10), RandomStringUtils.randomAlphanumeric(10), 1);
+			//book.add(newBook);
 			System.out.println("Le livre ISBN="+isbn+" n'existe pas");
 		}
 		return null;

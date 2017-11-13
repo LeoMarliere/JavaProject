@@ -21,7 +21,7 @@ public class BibliothequeTest {
 	@Test
 	public void testGetBook() {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
 		listofbooks.add(booktotest);
 		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
 		// when ?
@@ -35,8 +35,8 @@ public class BibliothequeTest {
 	@Test
 	public void testgsearchBooksByAuteur() {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book(5, "456DEF", "Voltaire", "Candide", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Candide", 1);
 		listofbooks.add(booktotest);
 		listofbooks.add(booktotest2);
 		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
@@ -50,8 +50,8 @@ public class BibliothequeTest {
 	@Test
 	public void testgsearchBooksByIsbn() {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book(5, "456DEF", "Voltaire", "Zadig", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Zadig", 1);
 		listofbooks.add(booktotest);
 		listofbooks.add(booktotest2);
 		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
@@ -68,8 +68,8 @@ public class BibliothequeTest {
 	@Test
 	public void testgsearchBooksByTitre() {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book(5, "456DEF", "Voltaire", "Zadig", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Zadig", 1);
 		listofbooks.add(booktotest);
 		listofbooks.add(booktotest2);
 		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
@@ -86,7 +86,7 @@ public class BibliothequeTest {
 	@Test
 	public void testBorrowBook() throws LibraryException {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
 		final User usertotest = new User(0, "Croquet");
 		listofUsers.add(usertotest);
 		listofbooks.add(booktotest);
@@ -107,7 +107,7 @@ public class BibliothequeTest {
 	@Test
 	public void testReturnBook() throws LibraryException {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
 		final User usertotest = new User(1, "Croquet");
 		final User usertotest2 = new User(1, "Franck");
 		listofbooks.add(booktotest);
@@ -130,7 +130,7 @@ public class BibliothequeTest {
 	@Test
 	public void testAddBook() throws LibraryException {
 		// what ?
-		final Book booktotest = new Book(4, "123ABC", "Voltaire", "Candide", 1);
+		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
 		final User usertotest = new User(0, "Croquet");
 		listofUsers.add(usertotest);
 		listofbooks.add(booktotest);
