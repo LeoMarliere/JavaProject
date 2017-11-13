@@ -128,6 +128,7 @@ public class Main {
 		System.out.println("Recherche 2 : " + bibi.searchBooks("Victor Hugo"));
 		System.out.println("Recherche 3 : " + bibi.searchBooks("B2O"));
 
+		System.out.println(bibi.getBooks());
 	}
 
 }

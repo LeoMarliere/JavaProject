@@ -42,11 +42,11 @@ public class BibliothequeTest {
 	public void testGetBook() {
 		assertEquals(Optional.of(booktotest), bibliothequetotest.getBook("1"));
 		assertNotEquals(Optional.of(booktotest), bibliothequetotest.getBook("3"));
-		assertNull(bibliothequetotest.getBook("3"));
+		assertNull(bibliothequetotest.getBook("4"));
 	}
 
 	@Test
-	public void testgsearchBooksByAuteur() {
+	public void testsearchBooksByAuteur() {
 
 		// when ?
 		final List<Book> result = bibliothequetotest.searchBooks("Voltaire");
@@ -56,7 +56,7 @@ public class BibliothequeTest {
 	}
 
 	@Test
-	public void testgsearchBooksByIsbn() {
+	public void testsearchBooksByIsbn() {
 
 		// when ?
 		final List<Book> result1 = bibliothequetotest.searchBooks("123ABC");
@@ -69,7 +69,7 @@ public class BibliothequeTest {
 	}
 
 	@Test
-	public void testgsearchBooksByTitre() {
+	public void testsearchBooksByTitre() {
 		// when ?
 		final List<Book> result1 = bibliothequetotest.searchBooks("Candide");
 		final List<Book> result2 = bibliothequetotest.searchBooks("Zadig");
@@ -97,14 +97,12 @@ public class BibliothequeTest {
 
 	@Test
 	public void testReturnBook() throws LibraryException {
-		bibliothequetotest.borrowBook("4", "Croquet");
-
-		assertEquals(0, bibliothequetotest.getBook().get(0).getNbExemplaire());
-		assertEquals(booktotest, bibliothequetotest.getUser().get(0).getBook().get(0));
-
-		bibliothequetotest.returnBook("4", "Croquet");
-		// then ?
+		bibliothequetotest.borrowBook("1", "Croquet");
 		assertEquals(1, bibliothequetotest.getBook().get(0).getNbExemplaire());
+		assertEquals(booktotest, bibliothequetotest.getUser().get(0).getBook().get(0));
+		bibliothequetotest.returnBook("1", "Croquet");
+		// then ?
+		assertEquals(2, bibliothequetotest.getBook().get(0).getNbExemplaire());
 	}
 
 	@Test

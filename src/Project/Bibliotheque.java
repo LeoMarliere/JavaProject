@@ -80,7 +80,7 @@ public class Bibliotheque implements IBibliotheque {
 			final MyStringRandomGen r = new MyStringRandomGen();
 			final Book newBook = new Book(isbn, r.generateRandomString(), r.generateRandomString(), 1);
 			book.add(newBook);
-			System.out.println("Le livre ISBN=" + isbn + " n'existe pas");
+			System.out.println("On crée le livre "+book.get(i).getTitre()+" avec l'ISBN = " +book.get(i).getIsbn());
 		}
 		return null;
 	}
