@@ -1,17 +1,19 @@
 package Project;
+
 public class Book {
+	private static int staticid = 1;
 	private int id;
 	private String isbn;
 	private String auteur;
 	private String titre;
 	private int nbExemplaire;
 
-	public Book(String isbn, String auteur, String titre, int nbExemplaire){
-			this.id = id++;
-			this.isbn = isbn;
-			this.auteur = auteur;
-			this.titre = titre;
-			this.nbExemplaire = nbExemplaire;
+	public Book(String isbn, String auteur, String titre, int nbExemplaire) {
+		this.id = staticid++;
+		this.isbn = isbn;
+		this.auteur = auteur;
+		this.titre = titre;
+		this.nbExemplaire = nbExemplaire;
 	}
 
 	public int getId() {
@@ -62,11 +64,11 @@ public class Book {
 
 	@Override
 	public boolean equals(Object obj) {
-		Book other = (Book) obj;
-		if (id != other.id)
+		final Book other = (Book) obj;
+		if (id != other.id) {
 			return false;
+		}
 		return true;
 	}
-	
-	
+
 }

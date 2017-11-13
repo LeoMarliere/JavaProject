@@ -1,12 +1,16 @@
 package Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import Exception.LibraryException;
 import Project.Bibliotheque;
@@ -14,32 +18,36 @@ import Project.Book;
 import Project.User;
 
 public class BibliothequeTest {
+	static List<Book> listofbooks;
+	static List<User> listofUsers;
+	static User usertotest;
+	static Book booktotest;
+	static Book booktotest2;
+	static Bibliotheque bibliothequetotest;
 
-	List<Book> listofbooks = new ArrayList();
-	List<User> listofUsers = new ArrayList();
+	@BeforeClass
+	public static void initialize() {
+		listofbooks = new ArrayList();
+		listofUsers = new ArrayList();
+		usertotest = new User(1, "Croquet");
+		booktotest = new Book("123ABC", "Voltaire", "Candide", 1);
+		booktotest2 = new Book("456DEF", "Voltaire", "Zadig", 1);
+		listofbooks.add(booktotest);
+		listofbooks.add(booktotest2);
+		listofUsers.add(usertotest);
+		bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
+	}
 
 	@Test
 	public void testGetBook() {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		listofbooks.add(booktotest);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
-		// when ?
-		final Optional result = Optional.of(bibliothequetotest.getBook("4"));
-		// then ?
-		assertEquals(Optional.of(booktotest),bibliothequetotest.getBook("4"));
-		assertNotEquals(Optional.of(booktotest),bibliothequetotest.getBook("3"));
-		assertNull(bibliothequetotest.getBook("2"));
+		assertEquals(Optional.of(booktotest), bibliothequetotest.getBook("1"));
+		assertNotEquals(Optional.of(booktotest), bibliothequetotest.getBook("3"));
+		assertNull(bibliothequetotest.getBook("3"));
 	}
 
 	@Test
 	public void testgsearchBooksByAuteur() {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Candide", 1);
-		listofbooks.add(booktotest);
-		listofbooks.add(booktotest2);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
+
 		// when ?
 		final List<Book> result = bibliothequetotest.searchBooks("Voltaire");
 		// then ?
@@ -49,12 +57,7 @@ public class BibliothequeTest {
 
 	@Test
 	public void testgsearchBooksByIsbn() {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Zadig", 1);
-		listofbooks.add(booktotest);
-		listofbooks.add(booktotest2);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
+
 		// when ?
 		final List<Book> result1 = bibliothequetotest.searchBooks("123ABC");
 		final List<Book> result2 = bibliothequetotest.searchBooks("456DEF");
@@ -67,12 +70,6 @@ public class BibliothequeTest {
 
 	@Test
 	public void testgsearchBooksByTitre() {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final Book booktotest2 = new Book( "456DEF", "Voltaire", "Zadig", 1);
-		listofbooks.add(booktotest);
-		listofbooks.add(booktotest2);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
 		// when ?
 		final List<Book> result1 = bibliothequetotest.searchBooks("Candide");
 		final List<Book> result2 = bibliothequetotest.searchBooks("Zadig");
@@ -85,14 +82,8 @@ public class BibliothequeTest {
 
 	@Test
 	public void testBorrowBook() throws LibraryException {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final User usertotest = new User(0, "Croquet");
-		listofUsers.add(usertotest);
-		listofbooks.add(booktotest);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
 		// when ?
-		bibliothequetotest.borrowBook("4", "Croquet");
+		bibliothequetotest.borrowBook("1", "Croquet");
 		// then ?
 		final List<Book> bibliothequelistofbooks = bibliothequetotest.getBooks();
 		final List<User> bibliothequelistofuser = bibliothequetotest.getUser();
@@ -100,42 +91,24 @@ public class BibliothequeTest {
 		final User theuserwhoborrowbook = bibliothequelistofuser.get(0);
 		final int numberofbookborrowbyuser = theuserwhoborrowbook.getBook().size();
 		final int numberofbookinbibliotheque = thebookbeanborrow.getNbExemplaire();
-		assertEquals(0, numberofbookinbibliotheque);
+		assertEquals(1, numberofbookinbibliotheque);
 		assertEquals(1, numberofbookborrowbyuser);
 	}
 
 	@Test
 	public void testReturnBook() throws LibraryException {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final User usertotest = new User(1, "Croquet");
-		final User usertotest2 = new User(1, "Franck");
-		listofbooks.add(booktotest);
-	
-		listofUsers.add(usertotest);
-		listofUsers.add(usertotest2);
+		bibliothequetotest.borrowBook("4", "Croquet");
 
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
-		// when ?
-		bibliothequetotest.borrowBook("4","Croquet");
-		
 		assertEquals(0, bibliothequetotest.getBook().get(0).getNbExemplaire());
 		assertEquals(booktotest, bibliothequetotest.getUser().get(0).getBook().get(0));
-		
-		bibliothequetotest.returnBook("4","Croquet");
+
+		bibliothequetotest.returnBook("4", "Croquet");
 		// then ?
 		assertEquals(1, bibliothequetotest.getBook().get(0).getNbExemplaire());
 	}
 
 	@Test
 	public void testAddBook() throws LibraryException {
-		// what ?
-		final Book booktotest = new Book( "123ABC", "Voltaire", "Candide", 1);
-		final User usertotest = new User(0, "Croquet");
-		listofUsers.add(usertotest);
-		listofbooks.add(booktotest);
-		final Bibliotheque bibliothequetotest = new Bibliotheque(listofUsers, listofbooks);
-		// when ?
 		bibliothequetotest.addBook("123ABC");
 		bibliothequetotest.addBook("ABCDEF");
 		// then ?
@@ -145,4 +118,5 @@ public class BibliothequeTest {
 		assertEquals(2, numberofbookinbibliotheque);
 		assertNotEquals(3, numberofbookinbibliotheque);
 	}
+
 }
