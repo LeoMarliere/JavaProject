@@ -75,24 +75,11 @@ public class Main {
 		System.out.println("DES UTILISATEUR EMPRUNTENT DES LIVRES");
 //		On vérifie si le livre demandé est bien présent dans la bibliothèque
 
-		try{
-			bibi.borrowBook("1", "Capon");
-		}catch( LibraryException e){
-			System.out.println(e);
-		}try{
-			bibi.borrowBook("1", "Exodia");
-		}catch( LibraryException e){
-			System.out.println(e);
-		}try{
-			bibi.borrowBook("1", "Exodia");
-		}catch( LibraryException e){
-			System.out.println(e);
-		}try{
-			bibi.borrowBook("2", "Titouan");
-		}catch( LibraryException e){
-			System.out.println(e);
-		}
 		
+		bibi.borrowBook("1", "Capon");
+		bibi.borrowBook("1", "Exodia");
+		bibi.borrowBook("1", "Exodia");
+		bibi.borrowBook("2", "Titouan");
 		System.out.println();
 		//		On vérifie l'etat des livres
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
@@ -118,32 +105,13 @@ public class Main {
 		System.out.println("LES UTILISATEURS NOUS REND DES LIVRES");
 //		On vérifie si le livre rendu correspond bien
 
-		try{
+
 		bibi.returnBook("1", "Capon");
-		}catch(LibraryException e){
-			System.out.println(e);
-		}
-		try{
 		bibi.returnBook("1", "Exodia");
-		}catch(LibraryException e){
-			System.out.println(e);
-		}
-		try{
 		bibi.returnBook("2", "Titouan");
-		}catch(LibraryException e){
-			System.out.println(e);
-		}
-		try{
 		bibi.returnBook("2", "Titouan");
-		}catch(LibraryException e){
-			System.out.println(e);
-		}
-		try{
-			bibi.returnBook("42", "Titouan");
-		}catch(LibraryException e){
-			System.out.println(e);
-		}
-		
+		bibi.returnBook("42", "Titouan");
+	
 		System.out.println();
 		System.out.println("ETAT DE LA BIBLIOTHEQUE");
 		System.out.println("Etat des livres : "+bibi.getBooks());
